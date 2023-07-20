@@ -15,4 +15,11 @@ public class Archer : MonoBehaviour
     {
         
     }
+    void OnTriggerEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Debug.Log("ìGÇæÅIéEÇπÅI");
+        }
+    }
 }
