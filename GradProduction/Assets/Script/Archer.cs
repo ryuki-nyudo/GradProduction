@@ -15,11 +15,16 @@ public class Archer : MonoBehaviour
     {
         
     }
-    void OnTriggerEnter(Collision other)
+    void OnTriggerStay(Collider other)  /*もし敵が範囲内に入ったら*/
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy")    /*タグがEnemyだったら*/
         {
-            Debug.Log("敵だ！殺せ！");
+            /*memo 最終地点のオブジェクトに一番近い敵を攻撃というスクリプトを組めばうまくいきそう*/
+
+
+
+
+            Debug.Log("敵だ！殺せ！");       
         }
     }
 }
