@@ -24,7 +24,7 @@ public class Archer : MonoBehaviour
 
 
 
-            Debug.Log("“G‚¾IE‚¹I");       
+            //Debug.Log("“G‚¾IE‚¹I");       
         }
     }
 }
