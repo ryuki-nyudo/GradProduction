@@ -5,9 +5,15 @@ using UnityEngine;
 
 public class Player_life : MonoBehaviour
 {
+    private int count = 10;
+
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Hit"); // ログを表示する
+        for (int i = count; i >= 1; --i)
+        {
+          
+        }
+        //Debug.Log("Hit"); // ログを表示する
+        Debug.Log(count);
     }
-
 }
