@@ -10,12 +10,10 @@ public class Player_life : MonoBehaviour
     void OnCollisionEnter(Collision collision)　//オブジェクトにヒットしたら
     {
 
-        {
             for (int i = count; i >= 1; --i)  //10から1づつ引いていきたい
             {
                 Debug.Log(i);
 
             }
-        }
     }
 }
