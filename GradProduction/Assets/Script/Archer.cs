@@ -4,26 +4,23 @@ using UnityEngine;
 
 public class Archer : MonoBehaviour
 {
-    private double interval;
     private float timeElapsed;
+    private int levelNumber;
 
-    // Start is called before the first frame update
+    private double AS;  /*アタックスピード*/
+    private int ATK;    /*アタックダメージ*/
+    private int Area;   /*攻撃範囲*/
+
     void Start()
     {
-        interval = 0.5;  /*  AS 1/0.5s */
+        AS = 0.5;  /*  AS 1/0.5s */
         timeElapsed = 0;
+        levelNumber = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //timeElapsed += Time.deltaTime;
-
-        //if(timeElapsed >= interval)
-        //{
-        //    Debug.Log("攻撃");
-        //    timeElapsed = 0;
-        //}
 
     }
     void OnTriggerStay(Collider other)  /*もし敵が範囲内に入ったら*/
@@ -32,12 +29,38 @@ public class Archer : MonoBehaviour
         {
             timeElapsed += Time.deltaTime;
 
-            if (timeElapsed >= interval)
+            if (timeElapsed >= AS)  
             {
                 Debug.Log("攻撃");
+                
+
+
+
                 timeElapsed = 0;
             }
             //Debug.Log("敵だ！殺せ！");       
+        }
+    }
+
+    void Level()
+    {
+        switch (levelNumber)
+        {
+            case 1:
+                ATK = 20;
+                AS = 0.5;
+                Area = 3;
+                break;
+            case 2:
+                ATK = 20;
+                AS = 0.3;
+                Area = 4;
+                break;
+            case 3:
+                ATK = 25;
+                AS = 0.3;
+                Area = 5;
+                break;
         }
     }
 }
