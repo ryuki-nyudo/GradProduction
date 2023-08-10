@@ -155,8 +155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608142b0e032e184f8eaed375f1ffaed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Goal: {fileID: 1301975271}
-  Enemy: {fileID: 1787241523}
 --- !u!135 &216580704
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -228,7 +226,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 216580702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.25, y: 3.68, z: 115.76}
+  m_LocalPosition: {x: -3.7, y: 3.68, z: 56.9}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
