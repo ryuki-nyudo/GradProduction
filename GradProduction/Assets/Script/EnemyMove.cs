@@ -1,9 +1,13 @@
+
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyMove : MonoBehaviour
 {
+    //移動ターゲット
 	[SerializeField]
 	private Transform m_Target;
     [SerializeField]
@@ -30,8 +34,8 @@ public class EnemyMove : MonoBehaviour
 
     void OnTriggerEnter(Collider other){
         if(other.gameObject.tag == "Target"){
-            Destroy(other.gameObject);
             change = true;
+            Destroy(other.gameObject);
         }
     }
 }
