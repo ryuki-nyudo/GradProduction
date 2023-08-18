@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Archer : MonoBehaviour
 {
+    /*配列の処理（仮）LIST(仮)*/
+    private List<GameObject> enemyList = new List<GameObject>();
+    private int ObjectCount;
+    /**/
+
     private float timeElapsed;
     private int levelNumber;
 
@@ -13,7 +18,6 @@ public class Archer : MonoBehaviour
 
     void Start()
     {
-        AS = 0.5;  /*  AS 1/0.5s */
         timeElapsed = 0;
         levelNumber = 1;
     }
@@ -25,16 +29,17 @@ public class Archer : MonoBehaviour
     }
     void OnTriggerStay(Collider other)  /*もし敵が範囲内に入ったら*/
     {
+
         if (other.gameObject.tag == "Enemy")    /*タグがEnemyだったら*/
         {
+
             timeElapsed += Time.deltaTime;
 
-            if (timeElapsed >= AS)  
+            if (timeElapsed >= AS)
             {
+
+                /*この中に敵を指定して攻撃する処理を書く*/
                 Debug.Log("攻撃");
-                
-
-
 
                 timeElapsed = 0;
             }
