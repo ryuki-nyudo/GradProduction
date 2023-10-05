@@ -25,26 +25,46 @@ public class Archer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        foreach (GameObject obj in enemyList)       //Debuglog‚ÌŠm”F
+        {
+            Debug.Log("enemyList: " + obj.name);
+
+            if (enemyList[0])
+            {
+                timeElapsed += Time.deltaTime;
+                if (timeElapsed >= AS)
+                {
+
+                    /*‚±‚Ì’†‚É“G‚ğw’è‚µ‚ÄUŒ‚‚·‚éˆ—‚ğ‘‚­*/
+                    Debug.Log("UŒ‚");
+                    timeElapsed = 0;
+                }
+            }
+        }
 
     }
-    void OnTriggerStay(Collider other)  /*‚à‚µ“G‚ª”ÍˆÍ“à‚É“ü‚Á‚½‚ç*/
+    void OnTriggerEnter(Collider other)  /*‚à‚µ“G‚ª”ÍˆÍ“à‚É“ü‚Á‚½‚ç*/
     {
 
         if (other.gameObject.tag == "Enemy")    /*ƒ^ƒO‚ªEnemy‚¾‚Á‚½‚ç*/
         {
+            enemyList.Add(other.gameObject);
+            //timeElapsed += Time.deltaTime;
 
-            timeElapsed += Time.deltaTime;
+            //if (timeElapsed >= AS)
+            //{
 
-            if (timeElapsed >= AS)
-            {
-
-                /*‚±‚Ì’†‚É“G‚ğw’è‚µ‚ÄUŒ‚‚·‚éˆ—‚ğ‘‚­*/
-                Debug.Log("UŒ‚");
-
-                timeElapsed = 0;
-            }
+            //    /*‚±‚Ì’†‚É“G‚ğw’è‚µ‚ÄUŒ‚‚·‚éˆ—‚ğ‘‚­*/
+            //    Debug.Log("UŒ‚");
+            //    timeElapsed = 0;
+            //}
             //Debug.Log("“G‚¾IE‚¹I");       
         }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        enemyList.RemoveAt(0);
     }
 
     void Level()
