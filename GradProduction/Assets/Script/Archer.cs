@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Archer : MonoBehaviour
 {
+    /*”z—ñ‚Ìˆ—i‰¼jLIST(‰¼)*/
+    private List<GameObject> enemyList = new List<GameObject>();
+    private int ObjectCount;
+    /**/
+
     private float timeElapsed;
     private int levelNumber;
 
@@ -13,7 +18,6 @@ public class Archer : MonoBehaviour
 
     void Start()
     {
-        AS = 0.5;  /*  AS 1/0.5s */
         timeElapsed = 0;
         levelNumber = 1;
     }
@@ -21,25 +25,46 @@ public class Archer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        foreach (GameObject obj in enemyList)       //Debuglog‚ÌŠm”F
+        {
+            Debug.Log("enemyList: " + obj.name);
+
+            if (enemyList[0])
+            {
+                timeElapsed += Time.deltaTime;
+                if (timeElapsed >= AS)
+                {
+
+                    /*‚±‚Ì’†‚É“G‚ğw’è‚µ‚ÄUŒ‚‚·‚éˆ—‚ğ‘‚­*/
+                    Debug.Log("UŒ‚");
+                    timeElapsed = 0;
+                }
+            }
+        }
 
     }
-    void OnTriggerStay(Collider other)  /*‚à‚µ“G‚ª”ÍˆÍ“à‚É“ü‚Á‚½‚ç*/
+    void OnTriggerEnter(Collider other)  /*‚à‚µ“G‚ª”ÍˆÍ“à‚É“ü‚Á‚½‚ç*/
     {
+
         if (other.gameObject.tag == "Enemy")    /*ƒ^ƒO‚ªEnemy‚¾‚Á‚½‚ç*/
         {
-            timeElapsed += Time.deltaTime;
+            enemyList.Add(other.gameObject);
+            //timeElapsed += Time.deltaTime;
 
-            if (timeElapsed >= AS)  
-            {
-                Debug.Log("UŒ‚");
-                
+            //if (timeElapsed >= AS)
+            //{
 
-
-
-                timeElapsed = 0;
-            }
+            //    /*‚±‚Ì’†‚É“G‚ğw’è‚µ‚ÄUŒ‚‚·‚éˆ—‚ğ‘‚­*/
+            //    Debug.Log("UŒ‚");
+            //    timeElapsed = 0;
+            //}
             //Debug.Log("“G‚¾IE‚¹I");       
         }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        enemyList.RemoveAt(0);
     }
 
     void Level()
