@@ -16,6 +16,8 @@ public class Archer : MonoBehaviour
     private int ATK;    /*アタックダメージ*/
     private int Area;   /*攻撃範囲*/
 
+    HPScript hpScript;  //HPScript
+
     void Start()
     {
         timeElapsed = 0;
@@ -36,6 +38,14 @@ public class Archer : MonoBehaviour
                 {
 
                     /*この中に敵を指定して攻撃する処理を書く*/
+                    GameObject firstEnemy = enemyList[0];   //配列最初の敵
+
+                    hpScript = firstEnemy.GetComponent<HPScript>();
+
+                    hpScript.enemyHP -= ATK;
+
+
+
                     Debug.Log("攻撃");
                     timeElapsed = 0;
                 }
@@ -96,7 +106,7 @@ public class Archer : MonoBehaviour
 範囲に入った順番に攻撃を仕掛ける
 OnCollisionStayの中に敵を検知したらEnemyに入れる処理を書いてその中で一番ゴールに近い敵を優先的に配列に組み込んで攻撃をしていく処理の想定
 
- 
+
 */
 
 
