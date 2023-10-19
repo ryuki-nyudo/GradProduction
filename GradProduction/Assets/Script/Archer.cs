@@ -12,9 +12,9 @@ public class Archer : MonoBehaviour
     private float timeElapsed;
     private int levelNumber;
 
-    private double AS;  /*アタックスピード*/
-    private int ATK;    /*アタックダメージ*/
-    private int Area;   /*攻撃範囲*/
+    public double AS;  /*アタックスピード*/
+    public int ATK;    /*アタックダメージ*/
+    public int Area;   /*攻撃範囲*/
 
     HPScript hpScript;  //HPScript
 
@@ -27,6 +27,7 @@ public class Archer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Level();
         foreach (GameObject obj in enemyList)       //Debuglogの確認
         {
             Debug.Log("enemyList: " + obj.name);
@@ -44,14 +45,28 @@ public class Archer : MonoBehaviour
 
                     hpScript.enemyHP -= ATK;
 
-
-
                     Debug.Log("攻撃");
                     timeElapsed = 0;
+
+                    if(hpScript.enemyHP <= 0)
+                    {
+                        enemyList.RemoveAt(0);
+                    }
                 }
             }
         }
 
+
+        ///*テストエリア*/
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    hpScript.enemyHP -= 1;
+        //    Debug.Log("左クリック");
+        //}
+
+
+
+        /*テストエリア*/
     }
     void OnTriggerEnter(Collider other)  /*もし敵が範囲内に入ったら*/
     {
