@@ -28,34 +28,31 @@ public class Archer : MonoBehaviour
     void Update()
     {
         Level();
-        //foreach (GameObject obj in enemyList)       //Debuglogの確認
-        //{
-          //  Debug.Log("enemyList: " + obj.name);
 
-            if (enemyList[0])
+        if (enemyList.Count > 0)
+        {
+            GameObject element = enemyList[0];
+            timeElapsed += Time.deltaTime;
+            if (timeElapsed >= AS)
             {
-                timeElapsed += Time.deltaTime;
-                if (timeElapsed >= AS)
+
+                /*この中に敵を指定して攻撃する処理を書く*/
+                GameObject firstEnemy = enemyList[0];   //配列最初の敵
+
+                hpScript = firstEnemy.GetComponent<HPScript>();
+
+                hpScript.enemyHP -= ATK;
+
+                Debug.Log("攻撃");
+                timeElapsed = 0;
+
+                if (hpScript.enemyHP <= 0)
                 {
-
-                    /*この中に敵を指定して攻撃する処理を書く*/
-                    GameObject firstEnemy = enemyList[0];   //配列最初の敵
-
-                    hpScript = firstEnemy.GetComponent<HPScript>();
-
-                    hpScript.enemyHP -= ATK;
-
-                    Debug.Log("攻撃");
-                    timeElapsed = 0;
-
-                    if(hpScript.enemyHP <= 0)
-                    {
-                        enemyList.RemoveAt(0);
-                    }
+                    enemyList.RemoveAt(0);
                 }
-          //  }
+            }
         }
-
+        
 
         ///*テストエリア*/
         //if (Input.GetMouseButtonDown(0))
@@ -73,19 +70,11 @@ public class Archer : MonoBehaviour
 
         if (other.gameObject.tag == "Enemy")    /*タグがEnemyだったら*/
         {
-            enemyList.Add(other.gameObject);
-            //timeElapsed += Time.deltaTime;
-
-            //if (timeElapsed >= AS)
-            //{
-
-            //    /*この中に敵を指定して攻撃する処理を書く*/
-            //    Debug.Log("攻撃");
-            //    timeElapsed = 0;
-            //}
-            //Debug.Log("敵だ！殺せ！");       
+            enemyList.Add(other.gameObject); 
         }
     }
+
+    
 
     void OnTriggerExit(Collider other)
     {
