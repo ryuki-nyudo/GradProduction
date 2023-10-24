@@ -28,9 +28,9 @@ public class Archer : MonoBehaviour
     void Update()
     {
         Level();
-        foreach (GameObject obj in enemyList)       //Debuglogの確認
-        {
-            Debug.Log("enemyList: " + obj.name);
+        //foreach (GameObject obj in enemyList)       //Debuglogの確認
+        //{
+          //  Debug.Log("enemyList: " + obj.name);
 
             if (enemyList[0])
             {
@@ -53,7 +53,7 @@ public class Archer : MonoBehaviour
                         enemyList.RemoveAt(0);
                     }
                 }
-            }
+          //  }
         }
 
 
