@@ -23,9 +23,12 @@ public class HPScript : MonoBehaviour
     {
         // スライダーの向きをカメラ方向に固定
         hpSlider.transform.rotation = Camera.main.transform.rotation;
+        
+        //HP処理
+        hpSlider.value = (float)enemyHP / (float)wkHP;
         if(enemyHP <= 0)
         {
-            Debug.Log("HPが0だよ");
+            Destroy(gameObject);
         }
     }
 }
