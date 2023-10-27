@@ -12,9 +12,11 @@ public class Archer : MonoBehaviour
     private float timeElapsed;
     private int levelNumber;
 
-    private double AS;  /*アタックスピード*/
-    private int ATK;    /*アタックダメージ*/
-    private int Area;   /*攻撃範囲*/
+    public double AS;  /*アタックスピード*/
+    public int ATK;    /*アタックダメージ*/
+    public int Area;   /*攻撃範囲*/
+
+    HPScript hpScript;  //HPScript
 
     void Start()
     {
@@ -25,42 +27,54 @@ public class Archer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach (GameObject obj in enemyList)       //Debuglogの確認
+        Level();
+
+        if (enemyList.Count > 0)
         {
-            Debug.Log("enemyList: " + obj.name);
-
-            if (enemyList[0])
+            GameObject element = enemyList[0];
+            timeElapsed += Time.deltaTime;
+            if (timeElapsed >= AS)
             {
-                timeElapsed += Time.deltaTime;
-                if (timeElapsed >= AS)
-                {
 
-                    /*この中に敵を指定して攻撃する処理を書く*/
-                    Debug.Log("攻撃");
-                    timeElapsed = 0;
+                /*この中に敵を指定して攻撃する処理を書く*/
+                GameObject firstEnemy = enemyList[0];   //配列最初の敵
+
+                hpScript = firstEnemy.GetComponent<HPScript>();
+
+                hpScript.enemyHP -= ATK;
+
+                Debug.Log("攻撃");
+                timeElapsed = 0;
+
+                if (hpScript.enemyHP <= 0)
+                {
+                    enemyList.RemoveAt(0);
                 }
             }
         }
+        
 
+        ///*テストエリア*/
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    hpScript.enemyHP -= 1;
+        //    Debug.Log("左クリック");
+        //}
+
+
+
+        /*テストエリア*/
     }
     void OnTriggerEnter(Collider other)  /*もし敵が範囲内に入ったら*/
     {
 
         if (other.gameObject.tag == "Enemy")    /*タグがEnemyだったら*/
         {
-            enemyList.Add(other.gameObject);
-            //timeElapsed += Time.deltaTime;
-
-            //if (timeElapsed >= AS)
-            //{
-
-            //    /*この中に敵を指定して攻撃する処理を書く*/
-            //    Debug.Log("攻撃");
-            //    timeElapsed = 0;
-            //}
-            //Debug.Log("敵だ！殺せ！");       
+            enemyList.Add(other.gameObject); 
         }
     }
+
+    
 
     void OnTriggerExit(Collider other)
     {
@@ -96,7 +110,7 @@ public class Archer : MonoBehaviour
 範囲に入った順番に攻撃を仕掛ける
 OnCollisionStayの中に敵を検知したらEnemyに入れる処理を書いてその中で一番ゴールに近い敵を優先的に配列に組み込んで攻撃をしていく処理の想定
 
- 
+
 */
 
 

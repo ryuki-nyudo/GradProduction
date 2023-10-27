@@ -13,7 +13,10 @@ public class EnemyMove : MonoBehaviour
     [SerializeField]
 	private Transform m_Goal;
 
+    //NavMeshのエリア獲得
 	private NavMeshAgent m_Agent;
+
+    //ターゲットからゴールに移動変更
     private bool change = false;
 
 	void Start()
@@ -24,7 +27,7 @@ public class EnemyMove : MonoBehaviour
 
 	void Update()
 	{
-        if(change == false){
+        if(change == false){    //ターゲットに通過するまでゴールにいかないようにする
 		    m_Agent.SetDestination(m_Target.position);
         }
         else {
@@ -33,9 +36,10 @@ public class EnemyMove : MonoBehaviour
 	}
 
     void OnTriggerEnter(Collider other){
-        if(other.gameObject.tag == "Target"){
+        //ターゲットに触れたらゴールに移動する
+        if(other.gameObject.tag == "Target"){   
             change = true;
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
         }
     }
 }
