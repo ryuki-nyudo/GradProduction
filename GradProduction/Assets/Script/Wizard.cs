@@ -8,25 +8,28 @@ public class Wizard : MonoBehaviour
     private List<GameObject> enemyList = new List<GameObject>();
     private int ObjectCount;
     /**/
-
+    private SphereCollider sphereCollider;
     private float timeElapsed;
     private int levelNumber;
 
-    public double AS;  /*アタックスピード*/
-    public int ATK;    /*アタックダメージ*/
-    public int Area;   /*攻撃範囲*/
+    private double AS;  /*アタックスピード*/
+    private int ATK;    /*アタックダメージ*/
+    private float Area;   /*攻撃範囲*/
 
     HPScript hpScript;  //HPScript
 
     void Start()
     {
+        sphereCollider = GetComponent<SphereCollider>();
+
         timeElapsed = 0;
-        levelNumber = 1;
+        levelNumber = 3;
     }
 
     // Update is called once per frame
     void Update()
     {
+        sphereCollider.radius = Area;
         Level();
 
         if (enemyList.Count > 0)
@@ -88,19 +91,18 @@ public class Wizard : MonoBehaviour
             case 1:
                 ATK = 15;
                 AS = 0.5;
-                Area = 3;
+                Area = 5f;
                 break;
             case 2:
                 ATK = 15;
                 AS = 0.3;
-                Area = 4;
+                Area = 6f;
                 break;
             case 3:
                 ATK = 20;
                 AS = 0.3;
-                Area = 5;
+                Area = 7f;
                 break;
         }
     }
 }
-
