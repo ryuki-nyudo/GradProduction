@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Wizard : MonoBehaviour
 {
-    /*”z—ñ‚Ìˆ—i‰¼jLIST(‰¼)*/
+    /*ï¿½zï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½jLIST(ï¿½ï¿½)*/
     private List<GameObject> enemyList = new List<GameObject>();
     private int ObjectCount;
     /**/
@@ -12,9 +12,9 @@ public class Wizard : MonoBehaviour
     private float timeElapsed;
     private int levelNumber;
 
-    private double AS;  /*ƒAƒ^ƒbƒNƒXƒs[ƒh*/
-    private int ATK;    /*ƒAƒ^ƒbƒNƒ_ƒ[ƒW*/
-    private float Area;   /*UŒ‚”ÍˆÍ*/
+    private double AS;  /*ï¿½Aï¿½^ï¿½bï¿½Nï¿½Xï¿½sï¿½[ï¿½h*/
+    private int ATK;    /*ï¿½Aï¿½^ï¿½bï¿½Nï¿½_ï¿½ï¿½ï¿½[ï¿½W*/
+    private float Area;   /*ï¿½Uï¿½ï¿½ï¿½Íˆï¿½*/
 
     HPScript hpScript;  //HPScript
 
@@ -39,14 +39,14 @@ public class Wizard : MonoBehaviour
             if (timeElapsed >= AS)
             {
 
-                /*‚±‚Ì’†‚É“G‚ğw’è‚µ‚ÄUŒ‚‚·‚éˆ—‚ğ‘‚­*/
-                GameObject firstEnemy = enemyList[0];   //”z—ñÅ‰‚Ì“G
+                /*ï¿½ï¿½ï¿½Ì’ï¿½ï¿½É“Gï¿½ï¿½ï¿½wï¿½è‚µï¿½ÄUï¿½ï¿½ï¿½ï¿½ï¿½éˆï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+                GameObject firstEnemy = enemyList[0];   //ï¿½zï¿½ï¿½Åï¿½ï¿½Ì“G
 
                 hpScript = firstEnemy.GetComponent<HPScript>();
 
                 hpScript.enemyHP -= ATK;
 
-                Debug.Log("UŒ‚");
+                Debug.Log("ï¿½Uï¿½ï¿½");
                 timeElapsed = 0;
 
                 if (hpScript.enemyHP <= 0)
@@ -57,21 +57,21 @@ public class Wizard : MonoBehaviour
         }
 
 
-        ///*ƒeƒXƒgƒGƒŠƒA*/
+        ///*ï¿½eï¿½Xï¿½gï¿½Gï¿½ï¿½ï¿½A*/
         //if (Input.GetMouseButtonDown(0))
         //{
         //    hpScript.enemyHP -= 1;
-        //    Debug.Log("¶ƒNƒŠƒbƒN");
+        //    Debug.Log("ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½bï¿½N");
         //}
 
 
 
-        /*ƒeƒXƒgƒGƒŠƒA*/
+        /*ï¿½eï¿½Xï¿½gï¿½Gï¿½ï¿½ï¿½A*/
     }
-    void OnTriggerEnter(Collider other)  /*‚à‚µ“G‚ª”ÍˆÍ“à‚É“ü‚Á‚½‚ç*/
+    void OnTriggerEnter(Collider other)  /*ï¿½ï¿½ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½ÍˆÍ“ï¿½ï¿½É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
     {
 
-        if (other.gameObject.tag == "Enemy")    /*ƒ^ƒO‚ªEnemy‚¾‚Á‚½‚ç*/
+        if (other.gameObject.tag == "Enemy")    /*ï¿½^ï¿½Oï¿½ï¿½Enemyï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
         {
             enemyList.Add(other.gameObject);
         }

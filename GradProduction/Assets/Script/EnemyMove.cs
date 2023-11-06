@@ -19,19 +19,49 @@ public class EnemyMove : MonoBehaviour
     //ターゲットからゴールに移動変更
     private bool change = false;
 
+    //防衛キャラ接敵
+    public bool BlockObj;
+    public bool BlockPlayer;
+    HPScript hpScript;  //壁兵士HPScript
+
+    //敵攻撃
+    private double AS = 0.5f;  //攻撃速度
+    private int ATK = 25;      //攻撃力
+    private float ATKtime;
+    
 	void Start()
 	{
 		m_Agent = GetComponent<NavMeshAgent>();
         change = false;
+        BlockObj = false;
+        BlockPlayer = false;
+
+        ATKtime = 0.0f;
 	}
 
 	void Update()
 	{
-        if(change == false){    //ターゲットに通過するまでゴールにいかないようにする
-		    m_Agent.SetDestination(m_Target.position);
+        if(BlockObj == false){
+            if(change == false){    //ターゲットに通過するまでゴールにいかないようにする
+                m_Agent.SetDestination(m_Target.position);
+            }
+            else {
+                m_Agent.SetDestination(m_Goal.position);
+            }
         }
-        else {
-            m_Agent.SetDestination(m_Goal.position);
+        else if(BlockPlayer == true){
+            m_Agent.isStopped = true;
+            ATKtime += Time.deltaTime;
+            if(ATKtime >= AS){
+                hpScript.enemyHP -= ATK;
+                ATKtime = 0.0f;
+            }
+
+            if(hpScript.enemyHP <= 0){
+                m_Agent.isStopped = false;
+                BlockPlayer = false;
+                BlockObj = false;
+            }
         }
 	}
 
@@ -40,6 +70,14 @@ public class EnemyMove : MonoBehaviour
         if(other.gameObject.tag == "Target"){   
             change = true;
             //Destroy(other.gameObject);
+        }
+        else if(other.gameObject.tag == "Block"){
+            BlockObj = true;
+        }
+        else if(other.gameObject.tag == "Player"){
+            BlockObj = true;
+            BlockPlayer = true;
+            hpScript = other.gameObject.GetComponent<HPScript>();
         }
     }
 }
