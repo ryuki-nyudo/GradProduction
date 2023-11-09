@@ -15,6 +15,7 @@ public class Wizard : MonoBehaviour
     private double AS;  /*�A�^�b�N�X�s�[�h*/
     private int ATK;    /*�A�^�b�N�_���[�W*/
     private float Area;   /*�U���͈�*/
+    private float Target;
 
     HPScript hpScript;  //HPScript
 
@@ -90,18 +91,21 @@ public class Wizard : MonoBehaviour
         {
             case 1:
                 ATK = 15;
-                AS = 0.5;
-                Area = 5f;
+                AS = 0.7;
+                Area = 4f;
+                Target = 3;
                 break;
             case 2:
                 ATK = 15;
-                AS = 0.3;
-                Area = 6f;
+                AS = 0.7;
+                Area = 4f;
+                Target = 4;
                 break;
             case 3:
                 ATK = 20;
-                AS = 0.3;
-                Area = 7f;
+                AS = 0.7;
+                Area = 5f;
+                Target = 5;
                 break;
         }
     }
