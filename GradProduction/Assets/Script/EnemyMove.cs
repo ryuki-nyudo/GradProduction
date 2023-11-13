@@ -26,7 +26,7 @@ public class EnemyMove : MonoBehaviour
 
     //敵攻撃
     private double AS = 0.5f;  //攻撃速度
-    private int ATK = 25;      //攻撃力
+    private int ATK = 1;      //攻撃力
     private float ATKtime;
     
 	void Start()
@@ -53,11 +53,11 @@ public class EnemyMove : MonoBehaviour
             m_Agent.isStopped = true;
             ATKtime += Time.deltaTime;
             if(ATKtime >= AS){
-                hpScript.enemyHP -= ATK;
+                hpScript.HP -= ATK;
                 ATKtime = 0.0f;
             }
 
-            if(hpScript.enemyHP <= 0){
+            if(hpScript.HP <= 0){
                 m_Agent.isStopped = false;
                 BlockPlayer = false;
                 BlockObj = false;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Archer : MonoBehaviour
 {
-    /*”z—ñ‚Ìˆ—i‰¼jLIST(‰¼)*/
+    /*ï¿½zï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½jLIST(ï¿½ï¿½)*/
     private List<GameObject> enemyList = new List<GameObject>();
     private int ObjectCount;
     /**/
@@ -12,9 +12,9 @@ public class Archer : MonoBehaviour
     private float timeElapsed;
     private int levelNumber;
 
-    private double AS;  /*ƒAƒ^ƒbƒNƒXƒs[ƒh*/
-    private int ATK;    /*ƒAƒ^ƒbƒNƒ_ƒ[ƒW*/
-    private float Area;   /*UŒ‚”ÍˆÍ*/
+    private double AS;  /*ï¿½Aï¿½^ï¿½bï¿½Nï¿½Xï¿½sï¿½[ï¿½h*/
+    private int ATK;    /*ï¿½Aï¿½^ï¿½bï¿½Nï¿½_ï¿½ï¿½ï¿½[ï¿½W*/
+    private float Area;   /*ï¿½Uï¿½ï¿½ï¿½Íˆï¿½*/
 
     HPScript hpScript;  //HPScript
 
@@ -39,17 +39,17 @@ public class Archer : MonoBehaviour
             if (timeElapsed >= AS)
             {
 
-                /*‚±‚Ì’†‚É“G‚ğw’è‚µ‚ÄUŒ‚‚·‚éˆ—‚ğ‘‚­*/
-                GameObject firstEnemy = enemyList[0];   //”z—ñÅ‰‚Ì“G
+                /*ï¿½ï¿½ï¿½Ì’ï¿½ï¿½É“Gï¿½ï¿½ï¿½wï¿½è‚µï¿½ÄUï¿½ï¿½ï¿½ï¿½ï¿½éˆï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+                GameObject firstEnemy = enemyList[0];   //ï¿½zï¿½ï¿½Åï¿½ï¿½Ì“G
 
                 hpScript = firstEnemy.GetComponent<HPScript>();
 
-                hpScript.enemyHP -= ATK;
+                hpScript.HP -= ATK;
 
-                Debug.Log("UŒ‚");
+                Debug.Log("ï¿½Uï¿½ï¿½");
                 timeElapsed = 0;
 
-                if (hpScript.enemyHP <= 0)
+                if (hpScript.HP <= 0)
                 {
                     enemyList.RemoveAt(0);
                 }
@@ -57,21 +57,21 @@ public class Archer : MonoBehaviour
         }
         
 
-        ///*ƒeƒXƒgƒGƒŠƒA*/
+        ///*ï¿½eï¿½Xï¿½gï¿½Gï¿½ï¿½ï¿½A*/
         //if (Input.GetMouseButtonDown(0))
         //{
-        //    hpScript.enemyHP -= 1;
-        //    Debug.Log("¶ƒNƒŠƒbƒN");
+        //    hpScript.HP -= 1;
+        //    Debug.Log("ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½bï¿½N");
         //}
 
 
 
-        /*ƒeƒXƒgƒGƒŠƒA*/
+        /*ï¿½eï¿½Xï¿½gï¿½Gï¿½ï¿½ï¿½A*/
     }
-    void OnTriggerEnter(Collider other)  /*‚à‚µ“G‚ª”ÍˆÍ“à‚É“ü‚Á‚½‚ç*/
+    void OnTriggerEnter(Collider other)  /*ï¿½ï¿½ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½ÍˆÍ“ï¿½ï¿½É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
     {
 
-        if (other.gameObject.tag == "Enemy")    /*ƒ^ƒO‚ªEnemy‚¾‚Á‚½‚ç*/
+        if (other.gameObject.tag == "Enemy")    /*ï¿½^ï¿½Oï¿½ï¿½Enemyï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
         {
             enemyList.Add(other.gameObject); 
         }
@@ -110,8 +110,8 @@ public class Archer : MonoBehaviour
 
 /*MEMO
 
-”ÍˆÍ‚É“ü‚Á‚½‡”Ô‚ÉUŒ‚‚ğdŠ|‚¯‚é
-OnCollisionStay‚Ì’†‚É“G‚ğŒŸ’m‚µ‚½‚çEnemy‚É“ü‚ê‚éˆ—‚ğ‘‚¢‚Ä‚»‚Ì’†‚Åˆê”ÔƒS[ƒ‹‚É‹ß‚¢“G‚ğ—Dæ“I‚É”z—ñ‚É‘g‚İ‚ñ‚ÅUŒ‚‚ğ‚µ‚Ä‚¢‚­ˆ—‚Ì‘z’è
+ï¿½ÍˆÍ‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ÉUï¿½ï¿½ï¿½ï¿½ï¿½dï¿½|ï¿½ï¿½ï¿½ï¿½
+OnCollisionStayï¿½Ì’ï¿½ï¿½É“Gï¿½ï¿½ï¿½ï¿½ï¿½mï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Enemyï¿½É“ï¿½ï¿½ï¿½éˆï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ì’ï¿½ï¿½Åˆï¿½ÔƒSï¿½[ï¿½ï¿½ï¿½É‹ß‚ï¿½ï¿½Gï¿½ï¿½Dï¿½ï¿½Iï¿½É”zï¿½ï¿½É‘gï¿½İï¿½ï¿½ï¿½ÅUï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‘zï¿½ï¿½
 
 
 */
@@ -136,21 +136,21 @@ OnCollisionStay‚Ì’†‚É“G‚ğŒŸ’m‚µ‚½‚çEnemy‚É“ü‚ê‚éˆ—‚ğ‘‚¢‚Ä‚»‚Ì’†‚Åˆê”ÔƒS[ƒ‹‚É
 //    // Update is called once per frame
 //    void Update()
 //    {
-//        /*ƒ^[ƒQƒbƒgƒ|ƒWƒVƒ‡ƒ“‚ğæ“¾*/
+//        /*ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½|ï¿½Wï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾*/
 //        Vector3 GoalPos = Goal.transform.position;
 
-//        /*Enemy‚Ìƒ|ƒWƒVƒ‡ƒ“‚ğæ“¾*/
+//        /*Enemyï¿½Ìƒ|ï¿½Wï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾*/
 //        Vector3 EnemyPos = Enemy.transform.position;
 
-//        /*ƒS[ƒ‹‚ÆƒGƒlƒ~[‚Ì‹——£‚ğæ“¾*/
+//        /*ï¿½Sï¿½[ï¿½ï¿½ï¿½ÆƒGï¿½lï¿½~ï¿½[ï¿½Ì‹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾*/
 //        float dis = Vector3.Distance(GoalPos, EnemyPos);
 //    }
-//    void OnTriggerStay(Collider other)  /*‚à‚µ“G‚ª”ÍˆÍ“à‚É“ü‚Á‚½‚ç*/
+//    void OnTriggerStay(Collider other)  /*ï¿½ï¿½ï¿½ï¿½ï¿½Gï¿½ï¿½ï¿½ÍˆÍ“ï¿½ï¿½É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 //    {
-//        if (other.gameObject.tag == "Enemy")    /*ƒ^ƒO‚ªEnemy‚¾‚Á‚½‚ç*/
+//        if (other.gameObject.tag == "Enemy")    /*ï¿½^ï¿½Oï¿½ï¿½Enemyï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 //        {
 
-//            //Debug.Log("“G‚¾IE‚¹I");       
+//            //Debug.Log("ï¿½Gï¿½ï¿½ï¿½Iï¿½Eï¿½ï¿½ï¿½I");       
 //        }
 //    }
 //}
@@ -158,8 +158,8 @@ OnCollisionStay‚Ì’†‚É“G‚ğŒŸ’m‚µ‚½‚çEnemy‚É“ü‚ê‚éˆ—‚ğ‘‚¢‚Ä‚»‚Ì’†‚Åˆê”ÔƒS[ƒ‹‚É
 
 ///*MEMO
 
-//”ÍˆÍ‚É“ü‚Á‚½‡”Ô‚ÉUŒ‚‚ğdŠ|‚¯‚é
-//OnCollisionStay‚Ì’†‚É“G‚ğŒŸ’m‚µ‚½‚çEnemy‚É“ü‚ê‚éˆ—‚ğ‘‚¢‚Ä‚»‚Ì’†‚Åˆê”ÔƒS[ƒ‹‚É‹ß‚¢“G‚ğ—Dæ“I‚É”z—ñ‚É‘g‚İ‚ñ‚ÅUŒ‚‚ğ‚µ‚Ä‚¢‚­ˆ—‚Ì‘z’è
+//ï¿½ÍˆÍ‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ÉUï¿½ï¿½ï¿½ï¿½ï¿½dï¿½|ï¿½ï¿½ï¿½ï¿½
+//OnCollisionStayï¿½Ì’ï¿½ï¿½É“Gï¿½ï¿½ï¿½ï¿½ï¿½mï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Enemyï¿½É“ï¿½ï¿½ï¿½éˆï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Ì’ï¿½ï¿½Åˆï¿½ÔƒSï¿½[ï¿½ï¿½ï¿½É‹ß‚ï¿½ï¿½Gï¿½ï¿½Dï¿½ï¿½Iï¿½É”zï¿½ï¿½É‘gï¿½İï¿½ï¿½ï¿½ÅUï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‘zï¿½ï¿½
 
 
 //*/

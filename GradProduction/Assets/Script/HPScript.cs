@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HPScript : MonoBehaviour
 {
      // 敵のヒットポイントを設定
-    public int enemyHP = 100;
+    public int HP;
     private int wkHP;
 
     public Slider hpSlider;
@@ -14,8 +14,16 @@ public class HPScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hpSlider.value = (float)enemyHP;
-        wkHP = enemyHP;
+        //tagによってHPを変える
+        if (gameObject.CompareTag("Player")){
+            HP = 100;
+        }
+        else if(gameObject.CompareTag("Enemy")){
+            HP = 100;
+        }
+
+        hpSlider.value = (float)HP;
+        wkHP = HP;
     }
 
     // Update is called once per frame
@@ -25,8 +33,8 @@ public class HPScript : MonoBehaviour
         hpSlider.transform.rotation = Camera.main.transform.rotation;
         
         //HP処理
-        hpSlider.value = (float)enemyHP / (float)wkHP;
-        if(enemyHP <= 0)
+        hpSlider.value = (float)HP / (float)wkHP;
+        if(HP <= 0)
         {
             Destroy(gameObject);
         }

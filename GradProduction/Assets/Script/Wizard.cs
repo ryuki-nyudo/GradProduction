@@ -30,7 +30,7 @@ public class Wizard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sphereCollider.radius = Area;
+        //sphereCollider.radius = Area;
         Level();
 
         if (enemyList.Count > 0)
@@ -45,12 +45,12 @@ public class Wizard : MonoBehaviour
 
                 hpScript = firstEnemy.GetComponent<HPScript>();
 
-                hpScript.enemyHP -= ATK;
+                hpScript.HP -= ATK;
 
                 Debug.Log("�U��");
                 timeElapsed = 0;
 
-                if (hpScript.enemyHP <= 0)
+                if (hpScript.HP <= 0)
                 {
                     enemyList.RemoveAt(0);
                 }
@@ -61,7 +61,7 @@ public class Wizard : MonoBehaviour
         ///*�e�X�g�G���A*/
         //if (Input.GetMouseButtonDown(0))
         //{
-        //    hpScript.enemyHP -= 1;
+        //    hpScript.HP -= 1;
         //    Debug.Log("���N���b�N");
         //}
 
