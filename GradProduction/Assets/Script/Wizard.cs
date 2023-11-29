@@ -4,50 +4,46 @@ using UnityEngine;
 
 public class Wizard : MonoBehaviour
 {
-    /*�z��̏����i���jLIST(��)*/
     private List<GameObject> enemyList = new List<GameObject>();
     private int ObjectCount;
-    /**/
     private SphereCollider sphereCollider;
     private float timeElapsed;
     private int levelNumber;
 
-    private double AS;  /*�A�^�b�N�X�s�[�h*/
-    private int ATK;    /*�A�^�b�N�_���[�W*/
-    private float Area;   /*�U���͈�*/
-    private float Target;
+    private double AS;  /*攻撃速度*/
+    private int ATK;    /*攻撃力*/
+    private float Area;   /*攻撃範囲*/
+    private float Target; //狙う敵の数
+    private int i;
 
-    HPScript hpScript;  //HPScript
+    private HPScript hpScript;
 
     void Start()
     {
         sphereCollider = GetComponent<SphereCollider>();
-
         timeElapsed = 0;
-        levelNumber = 3;
+        levelNumber = 1;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //sphereCollider.radius = Area;
+        sphereCollider.radius = Area;
         Level();
 
         if (enemyList.Count > 0)
         {
-            GameObject element = enemyList[0];
+            GameObject element = enemyList[0];  //リストの先頭の敵を取得
             timeElapsed += Time.deltaTime;
-            if (timeElapsed >= AS)
+            if (timeElapsed >= AS)  //ASに達したとき
             {
+                for (i = 0; i < Target; i++)
+                {
+                    GameObject firstEnemy = enemyList[i];       //リストの先頭を取得
+                    hpScript = firstEnemy.GetComponent<HPScript>();     //戦闘の敵のHPスクリプトを取得
+                }
+                hpScript.HP -= ATK;     //ダメージを与える
 
-                /*���̒��ɓG���w�肵�čU�����鏈��������*/
-                GameObject firstEnemy = enemyList[0];   //�z��ŏ��̓G
-
-                hpScript = firstEnemy.GetComponent<HPScript>();
-
-                hpScript.HP -= ATK;
-
-                Debug.Log("�U��");
+                Debug.Log("攻撃");
                 timeElapsed = 0;
 
                 if (hpScript.HP <= 0)
@@ -56,29 +52,15 @@ public class Wizard : MonoBehaviour
                 }
             }
         }
-
-
-        ///*�e�X�g�G���A*/
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    hpScript.HP -= 1;
-        //    Debug.Log("���N���b�N");
-        //}
-
-
-
-        /*�e�X�g�G���A*/
     }
-    void OnTriggerEnter(Collider other)  /*�����G���͈͓��ɓ�������*/
-    {
 
-        if (other.gameObject.tag == "Enemy")    /*�^�O��Enemy��������*/
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
         {
             enemyList.Add(other.gameObject);
         }
     }
-
-
 
     void OnTriggerExit(Collider other)
     {

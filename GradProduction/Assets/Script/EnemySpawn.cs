@@ -19,7 +19,7 @@ public class EnemySpawn : MonoBehaviour
     {
         Enemy = (GameObject)Resources.Load ("EnemyTestCube");
         EnemyNum = 0;
-        EnemyMaxNum = 1;  
+        EnemyMaxNum = 10;  
 
         EInitPosition = GameObject.Find("EnemySpawn").transform.position;
 

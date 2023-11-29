@@ -23,7 +23,7 @@ public class Archer : MonoBehaviour
         sphereCollider = GetComponent<SphereCollider>();
 
         timeElapsed = 0;
-        levelNumber = 3;
+        levelNumber = 1;
     }
 
     // Update is called once per frame
