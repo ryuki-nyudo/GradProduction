@@ -19,8 +19,11 @@ public class EnemyMove : MonoBehaviour{
     private float SPD = 10.0f;
 
     //防衛キャラ接敵
-    public bool BlockObj;
-    public bool BlockPlayer;
+    public bool WallArea;
+    public bool WallPlayer;
+    private float Areatime;
+    private bool EnemyHit;
+
     HPScript hpScript;  //壁兵士HPScript
 
     //敵攻撃
@@ -28,48 +31,23 @@ public class EnemyMove : MonoBehaviour{
     private int ATK = 1;      //攻撃力
     private float ATKtime;
 
-    //enemyとの接触処理
-    private bool E_Hit;
-    private float E_Count;
-    private bool enemyHit;
-    private BoxCollider boxCollider;
-
     void Start(){
         change = false;
-        BlockObj = false;
-        BlockPlayer = false;
 
-        E_Hit = false;
-        E_Count = 0.0f;
+        //Player接触処理
+        WallArea = false;
+        WallPlayer = false;
+        EnemyHit = false;
+        Areatime = 0.0f;
 
         ATKtime = 0.0f;
-
-        enemyHit = false;
-        boxCollider = null;
     }
 
-    void Update(){
-        //衝突無視判定
-        BoxCollider myCollider = gameObject.GetComponent<BoxCollider>();
-        if (enemyHit == true){
-            // IgnoreCollisionを呼び出す
-            //Physics.IgnoreCollision(myCollider, boxCollider, true);
-            // IgnoreCollisionの後で、Collisionの状態を再び確認するためのデバッグログ
-            //bool afterCollision = Physics.GetIgnoreCollision(myCollider, boxCollider);
-            //Debug.Log("After IgnoreCollision: " + afterCollision);
-        }
-
-
-        if (boxCollider != null){
-            Debug.Log(boxCollider.name);
-        }
-        else{
-            Debug.Log("eroor");
-        }
-
-        if (BlockObj == false && BlockPlayer == false){
+    void Update() {
+        //進行
+        if (WallArea == false) {
             //target移動
-            if (change == false){
+            if (change == false) {
                 transform.position = Vector3.MoveTowards(
                     transform.position,
                     m_Target.transform.position,
@@ -77,7 +55,7 @@ public class EnemyMove : MonoBehaviour{
                     );
             }
             //goal移動
-            else{
+            else {
                 transform.position = Vector3.MoveTowards(
                     transform.position,
                     m_Goal.transform.position,
@@ -86,55 +64,59 @@ public class EnemyMove : MonoBehaviour{
             }
         }
 
-        //敵と戦闘状態
-        else if (BlockPlayer == true){
-            ATKtime += Time.deltaTime;
-            if (ATKtime >= AS){
-                hpScript.HP -= ATK;
-                ATKtime = 0.0f;
-            }
+        //接触処理
+        else {
+            //Playerと戦闘状態
+            if (WallPlayer == true) {
+                ATKtime += Time.deltaTime;
+                if (ATKtime >= AS) {
+                    hpScript.HP -= ATK;
+                    ATKtime = 0.0f;
+                }
 
-            if (hpScript.HP <= 0){
-                BlockPlayer = false;
-                BlockObj = false;
+                if (hpScript.HP <= 0) {
+                    WallPlayer = false;
+                }
+            }
+        }
+
+        //Enemy衝突
+        if (EnemyHit == true){
+            Areatime += Time.deltaTime;
+            if(Areatime >= 2.5f){
+                EnemyHit = false;
             }
         }
     }
 
     void OnTriggerEnter(Collider other){
-        //ターゲットに触れたらゴールに移動する
+        //進行ターゲットに触れたらゴールに移動する
         if (other.gameObject.tag == "Target"){
             change = true;
-            //Destroy(other.gameObject);
         }
-
-        //敵同士がぶつかったら
-        if (other.gameObject.tag == "Enemy" && other.GetComponent<EnemyMove>() != null){
-            //衝突を無視する
-            boxCollider = other.GetComponent<BoxCollider>();
-            enemyHit = true;
-        }
-
-        //壁Playerにぶつかったら
-        if (other.gameObject.tag == "Block"){
-            BlockObj = true;
-        }
-        else if (other.gameObject.tag == "Player"){
-            BlockObj = true;
-            BlockPlayer = true;
-            hpScript = other.gameObject.GetComponent<HPScript>();
-        }
-
         //ゴールに触れたら消す
-        if (other.gameObject.tag == "Goal"){
+        else if (other.gameObject.tag == "Goal"){
             Destroy(gameObject);
         }
-    }
 
-    void OnTriggerExit(Collider other){
-        if (other.gameObject.tag == "Enemy"){
-            // 衝突から離れたら再び衝突を検知するように設定する
-            //Physics.IgnoreCollision(GetComponenat<Collider>(), other.GetComponent<Collider>(), false);
+        //Enemy同士でぶつかってPlayerと接触状態だったら進行する
+        if (other.gameObject.tag == "Enemy" && other.GetComponent<EnemyMove>().WallArea == true){
+            EnemyHit = true;
+            WallPlayer = false;
+            WallArea = false;
+            Debug.Log("Enemy衝突");
+        }
+
+        if (EnemyHit == false){
+            //Playerエリアに接触したら
+            if (other.gameObject.tag == "Player" && other.GetComponent<SphereCollider>() != null){
+                WallArea = true;
+            }
+            //Playerに接触したら
+            else if (other.gameObject.tag == "Player" && other.GetComponent<BoxCollider>() != null){
+                WallPlayer = true;
+                hpScript = other.gameObject.GetComponent<HPScript>();
+            }
         }
     }
 }
