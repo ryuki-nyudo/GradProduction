@@ -1,17 +1,24 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Butto_delete : MonoBehaviour
+public class Button_Delete : MonoBehaviour
 {
-    // kabe_deleteボタンがクリックされたときに呼び出される関数
-    public void OnDeleteButtonClick()
+    public GameObject towerToDelete; // 削除するタワーの参照
+
+    void Start()
     {
-        // タワーが存在するかチェック
-        GameObject tower = GameObject.FindWithTag("Tower");
-        if (tower != null)
+        // ボタンにクリック時の処理を追加
+        Button btn = GetComponent<Button>();
+        btn.onClick.AddListener(OnButtonClick);
+    }
+
+    // ボタンがクリックされたときに呼び出される関数
+    private void OnButtonClick()
+    {
+        // タワーが存在し、まだ削除されていない場合
+        if (towerToDelete != null)
         {
-            // タワーが存在すれば削除
-            Destroy(tower);
+            Destroy(towerToDelete); // タワーを削除
         }
     }
 }

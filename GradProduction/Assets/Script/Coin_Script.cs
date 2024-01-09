@@ -26,4 +26,3 @@ public class Coin_Script : MonoBehaviour
         }
     }
 }
-
