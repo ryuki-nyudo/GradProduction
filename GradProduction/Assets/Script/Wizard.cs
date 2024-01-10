@@ -36,10 +36,16 @@ public class Wizard : MonoBehaviour
             timeElapsed += Time.deltaTime;
             if (timeElapsed >= AS)  //ASに達したとき
             {
-                for (i = 0; i < Target; i++)
+                float numberOfEnemiesToAttack = Target;// 攻撃したい敵の数に変更する。
+
+                // リスト・サイズを超えたり、負の値にならないように注意する。
+                float enemiesToAttack = Mathf.Min(numberOfEnemiesToAttack, enemyList.Count);
+
+                for (i = 0; i < enemiesToAttack; i++)
                 {
                     GameObject firstEnemy = enemyList[i];       //リストの先頭を取得
                     hpScript = firstEnemy.GetComponent<HPScript>();     //戦闘の敵のHPスクリプトを取得
+                   // これで、攻撃やその他の操作に 'hpScript' を使うことができる。
                 }
                 hpScript.HP -= ATK;     //ダメージを与える
 
