@@ -36,21 +36,31 @@ public class Wizard : MonoBehaviour
             timeElapsed += Time.deltaTime;
             if (timeElapsed >= AS)  //ASに達したとき
             {
-                for (i = 0; i < Target; i++)
+
+                int numberOfEnemiesToAttack = Mathf.FloorToInt(Target);
+
+                int enemiesToAttack = Mathf.Min(numberOfEnemiesToAttack, enemyList.Count);
+
+                for (int i = 0; i < Target; i++)
                 {
-                    GameObject firstEnemy = enemyList[i];       //リストの先頭を取得
+                 
+                    GameObject firstEnemy = enemyList[i];
+                    Debug.Log("リストの先頭をとる");//リストの先頭を取得
                     hpScript = firstEnemy.GetComponent<HPScript>();     //戦闘の敵のHPスクリプトを取得
                 }
                 hpScript.HP -= ATK;     //ダメージを与える
 
                 Debug.Log("攻撃");
-                timeElapsed = 0;
+             
 
                 if (hpScript.HP <= 0)
                 {
-                    enemyList.RemoveAt(0);
+                    enemyList.RemoveAt(i);
+                    i--;
+
                 }
             }
+            timeElapsed = 0;
         }
     }
 
