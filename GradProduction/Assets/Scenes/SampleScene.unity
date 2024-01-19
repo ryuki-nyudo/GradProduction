@@ -2070,6 +2070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcb7b4433805b3438f53f0df13393d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerToDelete: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2386,7 +2387,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &773436266
 GameObject:
@@ -2668,7 +2669,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 907a2099b55559d47a33bbfed4126b39, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 907a2099b55559d47a33bbfed4126b39, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3045,7 +3046,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 36fa0f58b30211c429595d728cdea4c4, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 36fa0f58b30211c429595d728cdea4c4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3206,7 +3207,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1479351892
 GameObject:
@@ -3495,8 +3496,9 @@ GameObject:
   - component: {fileID: 1692805844}
   - component: {fileID: 1692805846}
   - component: {fileID: 1692805845}
+  - component: {fileID: 1692805847}
   m_Layer: 5
-  m_Name: Image
+  m_Name: CoinImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3560,6 +3562,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1692805843}
   m_CullTransparentMesh: 1
+--- !u!114 &1692805847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692805843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c14e69d0abaca3c45bbe334f89e07f32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CoinText: {fileID: 1780065277}
+  Coin: 0
 --- !u!1 &1697368391
 GameObject:
   m_ObjectHideFlags: 0
@@ -4706,7 +4722,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2119614072
 MonoBehaviour:
@@ -4730,7 +4746,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4126206070944046848, guid: a14ca8761b6afe64b90fbb19abfdbdb9, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4126206070944046848, guid: a14ca8761b6afe64b90fbb19abfdbdb9, type: 3}
       propertyPath: m_LocalPosition.x
