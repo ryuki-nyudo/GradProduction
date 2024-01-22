@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
-[RequireComponent(typeof(NavMeshAgent))]
 public class EnemyMove : MonoBehaviour{
     //移動ターゲット
     [SerializeField]
@@ -16,7 +14,7 @@ public class EnemyMove : MonoBehaviour{
     private bool change = false;
 
     //移動速度
-    private float SPD = 10.0f;
+    private float SPD = 5.0f;
 
     //防衛キャラ接敵
     public bool WallArea;
@@ -53,6 +51,8 @@ public class EnemyMove : MonoBehaviour{
                     m_Target.transform.position,
                     SPD * Time.deltaTime
                     );
+
+                transform.LookAt(m_Target.transform);
             }
             //goal移動
             else {
@@ -61,6 +61,8 @@ public class EnemyMove : MonoBehaviour{
                     m_Goal.transform.position,
                     SPD * Time.deltaTime
                     );
+
+                transform.LookAt(m_Goal.transform);
             }
         }
 
@@ -99,24 +101,24 @@ public class EnemyMove : MonoBehaviour{
             Destroy(gameObject);
         }
 
-        //Enemy同士でぶつかってPlayerと接触状態だったら進行する
-        if (other.gameObject.tag == "Enemy" && other.GetComponent<EnemyMove>().WallArea == true){
-            EnemyHit = true;
-            WallPlayer = false;
-            WallArea = false;
-            Debug.Log("Enemy衝突");
-        }
+        ////Enemy同士でぶつかってPlayerと接触状態だったら進行する
+        //if (other.gameObject.tag == "Enemy" && other.GetComponent<EnemyMove>().WallArea == true){
+        //    EnemyHit = true;
+        //    WallPlayer = false;
+        //    WallArea = false;
+        //    Debug.Log("Enemy衝突");
+        //}
 
-        if (EnemyHit == false){
-            //Playerエリアに接触したら
-            if (other.gameObject.tag == "Player" && other.GetComponent<SphereCollider>() != null){
-                WallArea = true;
-            }
-            //Playerに接触したら
-            else if (other.gameObject.tag == "Player" && other.GetComponent<BoxCollider>() != null){
-                WallPlayer = true;
-                hpScript = other.gameObject.GetComponent<HPScript>();
-            }
-        }
+        //if (EnemyHit == false){
+        //    //Playerエリアに接触したら
+        //    if (other.gameObject.tag == "Player" && other.GetComponent<SphereCollider>() != null){
+        //        WallArea = true;
+        //    }
+        //    //Playerに接触したら
+        //    else if (other.gameObject.tag == "Player" && other.GetComponent<BoxCollider>() != null){
+        //        WallPlayer = true;
+        //        hpScript = other.gameObject.GetComponent<HPScript>();
+        //    }
+        //}
     }
 }

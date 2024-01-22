@@ -17,7 +17,7 @@ public class EnemySpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Enemy = (GameObject)Resources.Load ("EnemyTestCube");
+        Enemy = (GameObject)Resources.Load ("GruntPBR");
         EnemyNum = 0;
         EnemyMaxNum = 10;  
 
