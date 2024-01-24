@@ -6,6 +6,7 @@ public class Button_Script : MonoBehaviour
     public GameObject towerPrefab; // TowerTestのプレハブ
     public Button_Delete deleteScript; // Button_Deleteのスクリプトへの参照
     private bool towerSpawned = false;
+    private GameObject spawnedTower; // 生成したタワーの参照
 
     void Start()
     {
@@ -14,28 +15,32 @@ public class Button_Script : MonoBehaviour
         Button btn = GetComponent<Button>();
         btn.onClick.AddListener(OnButtonClick);
     }
+
     private void Update()
     {
 
     }
+
     // ボタンがクリックされたときに呼び出される関数
     private void OnButtonClick()
     {
+        if (!towerSpawned)
         {
-            // まだタワーがスポーンされていない場合
-            if (!towerSpawned)
-            {
-                SpawnTowerAtPosition(new Vector3(-8.25f, 4f, 61.3f));
-                deleteScript.towerToDelete = towerPrefab;// Button_DeleteスクリプトのtowerToDelete変数にタワーの参照を設定
-                Debug.Log("towerToDelete変数にタワー参照");
-                towerSpawned = true; // スポーン済みフラグを設定
-            }
+            SpawnTowerAtPosition(new Vector3(-8.25f, 4f, 61.3f));
+            deleteScript.towerToDelete = spawnedTower; // 生成したタワーの参照を Button_Delete スクリプトの towerToDelete 変数に設定
+            Debug.Log("towerToDelete変数にタワー参照");
+            towerSpawned = true; // スポーン済みフラグを設定
+        }
+        else
+        {
+            // タワーが削除されたので、フラグをリセット
+            towerSpawned = false;
         }
     }
 
     // 指定された座標にタワーをスポーンする関数
     private void SpawnTowerAtPosition(Vector3 position)
     {
-        Instantiate(towerPrefab, position, Quaternion.identity);
+        spawnedTower = Instantiate(towerPrefab, position, Quaternion.identity);
     }
 }
