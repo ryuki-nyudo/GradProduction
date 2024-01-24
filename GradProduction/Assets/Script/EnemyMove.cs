@@ -108,7 +108,6 @@ public class EnemyMove : MonoBehaviour{
         //    WallArea = false;
         //    Debug.Log("Enemy衝突");
         //}
-
         //if (EnemyHit == false){
         //    //Playerエリアに接触したら
         //    if (other.gameObject.tag == "Player" && other.GetComponent<SphereCollider>() != null){

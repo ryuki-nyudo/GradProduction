@@ -16,16 +16,20 @@ public class Button_Script : MonoBehaviour
     }
     private void Update()
     {
+
     }
     // ボタンがクリックされたときに呼び出される関数
     private void OnButtonClick()
     {
-        // まだタワーがスポーンされていない場合
-        if (!towerSpawned)
         {
-            SpawnTowerAtPosition(new Vector3(-8.25f, 4f, 61.3f));
-            deleteScript.towerToDelete = towerPrefab;// Button_DeleteスクリプトのtowerToDelete変数にタワーの参照を設定
-            towerSpawned = true; // スポーン済みフラグを設定
+            // まだタワーがスポーンされていない場合
+            if (!towerSpawned)
+            {
+                SpawnTowerAtPosition(new Vector3(-8.25f, 4f, 61.3f));
+                deleteScript.towerToDelete = towerPrefab;// Button_DeleteスクリプトのtowerToDelete変数にタワーの参照を設定
+                Debug.Log("towerToDelete変数にタワー参照");
+                towerSpawned = true; // スポーン済みフラグを設定
+            }
         }
     }
 

@@ -3,7 +3,8 @@ guid: 4bcb7b4433805b3438f53f0df13393d9
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - towerToDelete: {fileID: 9210655119100142598, guid: aa8dbc0ccd7608341a98723629d266b2, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
