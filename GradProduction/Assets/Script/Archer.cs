@@ -46,7 +46,7 @@ public class Archer : MonoBehaviour
 
                 hpScript.HP -= ATK;
 
-                Debug.Log("�U��");
+                //Debug.Log("�U��");
                 timeElapsed = 0;
 
                 if (hpScript.HP <= 0)

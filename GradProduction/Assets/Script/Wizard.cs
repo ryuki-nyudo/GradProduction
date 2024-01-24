@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// ... (previous using statements)
+
 public class Wizard : MonoBehaviour
 {
     private List<GameObject> enemyList = new List<GameObject>();
-    private int ObjectCount;
     private SphereCollider sphereCollider;
     private float timeElapsed;
     private int levelNumber;
 
-    private double AS;  /*攻撃速度*/
-    private int ATK;    /*攻撃力*/
-    private float Area;   /*攻撃範囲*/
-    private float Target; //狙う敵の数
-    private int i;
+    private double attackSpeed; /*攻撃速度*/
+    private int attackDamage;   /*攻撃力*/
+    private float attackArea;  /*攻撃範囲*/
+    private float targetCount; /*狙う敵の数*/
 
     private HPScript hpScript;
 
@@ -23,43 +23,34 @@ public class Wizard : MonoBehaviour
         sphereCollider = GetComponent<SphereCollider>();
         timeElapsed = 0;
         levelNumber = 1;
+        Level();//初期レベルを設定
     }
 
     void Update()
     {
-        sphereCollider.radius = Area;
-        Level();
+        sphereCollider.radius = attackArea;
+        timeElapsed += Time.deltaTime;
 
-        if (enemyList.Count > 0)
+        if (enemyList.Count > 0 && timeElapsed >= attackSpeed)
         {
-            GameObject element = enemyList[0];  //リストの先頭の敵を取得
-            timeElapsed += Time.deltaTime;
-            if (timeElapsed >= AS)  //ASに達したとき
+            int numberOfEnemiesToAttack = Mathf.FloorToInt(targetCount);
+
+            for (int i = 0; i < numberOfEnemiesToAttack && i < enemyList.Count; i++)
             {
+                GameObject currentEnemy = enemyList[i];//リストの先頭の敵を取得
+                Debug.Log("敵を攻撃中: " + currentEnemy.name);
 
-                int numberOfEnemiesToAttack = Mathf.FloorToInt(Target);
-
-                int enemiesToAttack = Mathf.Min(numberOfEnemiesToAttack, enemyList.Count);
-
-                for (int i = 0; i < Target; i++)
-                {
-                 
-                    GameObject firstEnemy = enemyList[i];
-                    Debug.Log("リストの先頭をとる");//リストの先頭を取得
-                    hpScript = firstEnemy.GetComponent<HPScript>();     //戦闘の敵のHPスクリプトを取得
-                }
-                hpScript.HP -= ATK;     //ダメージを与える
-
-                Debug.Log("攻撃");
-             
+                hpScript = currentEnemy.GetComponent<HPScript>();
+                hpScript.HP -= attackDamage;
 
                 if (hpScript.HP <= 0)
                 {
                     enemyList.RemoveAt(i);
-                    i--;
-
+                    i--; // 削除された要素を考慮してインデックスを調整
+                    Debug.Log("要素を削除");
                 }
             }
+
             timeElapsed = 0;
         }
     }
@@ -74,7 +65,7 @@ public class Wizard : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        enemyList.RemoveAt(0);
+        enemyList.Remove(other.gameObject);
     }
 
     void Level()
@@ -82,22 +73,22 @@ public class Wizard : MonoBehaviour
         switch (levelNumber)
         {
             case 1:
-                ATK = 15;
-                AS = 0.7;
-                Area = 4f;
-                Target = 3;
+                attackDamage = 15;
+                attackSpeed = 0.7f;
+                attackArea = 4f;
+                targetCount = 3;
                 break;
             case 2:
-                ATK = 15;
-                AS = 0.7;
-                Area = 4f;
-                Target = 4;
+                attackDamage = 15;
+                attackSpeed = 0.7f;
+                attackArea = 4f;
+                targetCount = 4;
                 break;
             case 3:
-                ATK = 20;
-                AS = 0.7;
-                Area = 5f;
-                Target = 5;
+                attackDamage = 20;
+                attackSpeed = 0.7f;
+                attackArea = 5f;
+                targetCount = 5;
                 break;
         }
     }

@@ -351,7 +351,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 92964442}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.2, y: 1.36, z: 81.8}
+  m_LocalPosition: {x: -13.2, y: 1.36, z: 107}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1084,7 +1084,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerPrefab: {fileID: 9210655119100142598, guid: aa8dbc0ccd7608341a98723629d266b2, type: 3}
-  deleteScript: {fileID: 0}
+  deleteScript: {fileID: 693329482}
 --- !u!1 &342082450
 GameObject:
   m_ObjectHideFlags: 0
@@ -2070,6 +2070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcb7b4433805b3438f53f0df13393d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerToDelete: {fileID: 9210655119100142598, guid: aa8dbc0ccd7608341a98723629d266b2, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

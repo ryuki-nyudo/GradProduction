@@ -104,7 +104,7 @@ public class EnemyMove : MonoBehaviour{
             EnemyHit = true;
             WallPlayer = false;
             WallArea = false;
-            Debug.Log("Enemy衝突");
+            //Debug.Log("Enemy衝突");
         }
 
         if (EnemyHit == false){

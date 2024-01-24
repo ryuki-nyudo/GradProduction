@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class Button_Delete : MonoBehaviour
 {
+   
     public GameObject towerToDelete; // 削除するタワーの参照
 
     void Start()
@@ -11,14 +12,17 @@ public class Button_Delete : MonoBehaviour
         Button btn = GetComponent<Button>();
         btn.onClick.AddListener(OnButtonClick);
     }
-
+    
     // ボタンがクリックされたときに呼び出される関数
     private void OnButtonClick()
     {
+      
         // タワーが存在し、まだ削除されていない場合
         if (towerToDelete != null)
         {
-            Destroy(towerToDelete); // タワーを削除
+            Debug.Log("押したよ-");
+            GameObject towerInstance = Instantiate(towerToDelete, towerToDelete.transform.position, Quaternion.identity);
+            Destroy(towerInstance);
         }
     }
 }
