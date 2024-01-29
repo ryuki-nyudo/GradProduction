@@ -28,7 +28,7 @@ public class Archer : MonoBehaviour
 
         timeElapsed = 0;
         levelNumber = 1;
-
+        Area = 1;
 
     }
 

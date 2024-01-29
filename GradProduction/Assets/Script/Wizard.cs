@@ -24,6 +24,7 @@ public class Wizard : MonoBehaviour
         timeElapsed = 0;
         levelNumber = 1;
         Level();//初期レベルを設定
+        attackArea = 1;
     }
 
     void Update()
