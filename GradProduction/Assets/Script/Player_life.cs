@@ -7,30 +7,37 @@ using UnityEngine.SceneManagement;
 
 public class Player_life : MonoBehaviour
 {
-    public Text HPText;
-    private int count = 10   ; // ライフの数
+    public Text LifeNum;
+    public int count = 10; // ライフの数
 
    private void Start()
    {
-       
-        HPText.text = count.ToString(); //10が入ってる。
+        LifeNum.text = count.ToString(); //10が入ってる。
        
     }
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
         // Enemyにぶつかったとき
-        if (other.gameObject.tag == "Shitappa" || other.gameObject.tag == "Shocky"
-           || other.gameObject.tag == "ChoD")
+        if (other.gameObject.tag == "Shitappa")
         {
           --count;//ライフを1減らす
             Debug.Log(count);
-            HPText.text = count.ToString();
+            LifeNum.text = count.ToString();
            
         }
-        else
+        else if (other.gameObject.tag == "Shocky")
         {
-
+            --count;//ライフを1減らす
+            Debug.Log(count);
+            LifeNum.text = count.ToString();
         }
+        else if (other.gameObject.tag == "ChoD")
+        {
+            --count;//ライフを1減らす
+            Debug.Log(count);
+            LifeNum.text = count.ToString();
+        }
+
         if(count <= 0)
         {
             SceneManager.LoadScene("End");

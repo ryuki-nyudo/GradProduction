@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4487309900564834586
+--- !u!1 &151240110758820022
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4487309900564834591}
-  - component: {fileID: 4487309900564834584}
+  - component: {fileID: 151240110758820018}
+  - component: {fileID: 151240110758820019}
+  - component: {fileID: 151240110758820016}
+  - component: {fileID: 151240110758819981}
   m_Layer: 0
   m_Name: GOAL 1
   m_TagString: Goal
@@ -17,13 +19,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4487309900564834591
+--- !u!4 &151240110758820018
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4487309900564834586}
+  m_GameObject: {fileID: 151240110758820022}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 159.3, y: 5.07, z: 138.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,16 +34,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4487309900564834584
+--- !u!65 &151240110758820019
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4487309900564834586}
+  m_GameObject: {fileID: 151240110758820022}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 5, y: 5, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &151240110758820016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151240110758820022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3767fd073fc1d6446b32a050c6fdcbe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Shocky: {fileID: 2654103638636979899, guid: 6027d4ce7894e7b40b7ea743df60aeb7, type: 3}
+  Shitappa: {fileID: 7979101482789293210, guid: 51c35e86b3798ea4d9108a29b41d263f, type: 3}
+  ChoD: {fileID: 373893974848057702, guid: a2a07cb369a4c574bac917e2d8956da4, type: 3}
+--- !u!114 &151240110758819981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151240110758820022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ddedfc3e705b51448216e16dfc79b0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LifeNum: {fileID: 6684246251871242690, guid: 12d112b0bbec5f14a8d2e5b4ee396f17, type: 3}
+  count: 10

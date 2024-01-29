@@ -9,6 +9,8 @@ public class EnemyMove : MonoBehaviour{
     public Transform m_Target;
     public Transform m_Goal;
 
+    public GameObject PlayerLife;
+
     //ターゲットからゴールに移動変更
     private int change = 0;
 
@@ -22,6 +24,7 @@ public class EnemyMove : MonoBehaviour{
     private bool EnemyHit;
 
     HPScript hpScript;  //壁兵士HPScript
+    Player_life HPScript;
 
     //敵攻撃
     private double AS = 0.5f;  //攻撃速度
@@ -39,6 +42,9 @@ public class EnemyMove : MonoBehaviour{
         Areatime = 0.0f;
 
         ATKtime = 0.0f;
+
+        PlayerLife = GameObject.Find("GOAL");
+        HPScript = PlayerLife.GetComponent<Player_life>();
     }
 
     void Update() {
@@ -116,6 +122,7 @@ public class EnemyMove : MonoBehaviour{
         //ゴールに触れたら消す
         else if (other.gameObject.tag == "Goal")
         {
+            --HPScript.count;
             Destroy(gameObject);
         }
 
@@ -143,7 +150,7 @@ public class EnemyMove : MonoBehaviour{
     {
         if (gameObject.CompareTag("Shitappa"))
         {
-            SPD = 5.0f;
+            SPD = 10.0f;
         }
         else if (gameObject.CompareTag("Shocky"))
         {

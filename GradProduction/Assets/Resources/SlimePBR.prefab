@@ -534,7 +534,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CenterTarget: {fileID: 9193097852791779227, guid: 0a2a9aff70455ad44b87891b0b9f1428, type: 3}
   m_Target: {fileID: 3581876126975922811, guid: 17b3299aac1f4334881b9ed218ae6a95, type: 3}
-  m_Goal: {fileID: 4487309900564834591, guid: 556b3ecc7a106864295d6dbbfbdf80fd, type: 3}
+  m_Goal: {fileID: 151240110758820018, guid: 556b3ecc7a106864295d6dbbfbdf80fd, type: 3}
+  PlayerLife: {fileID: 151240110758820022, guid: 556b3ecc7a106864295d6dbbfbdf80fd, type: 3}
   WallArea: 0
   WallPlayer: 0
 --- !u!114 &7979721063426647262
