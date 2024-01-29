@@ -11,7 +11,7 @@ public class EnemySpawn : MonoBehaviour
     private int EnemyMaxNum;    //出現Enemy
     private int EnemyNum;
     private int SpawnNum;
-    private int MaxSpawn = 1;
+    private int MaxSpawn = 10;
 
     Vector3 EInitPosition1; //Enemy初期座標
     Vector3 EInitPosition2; //Enemy初期座標

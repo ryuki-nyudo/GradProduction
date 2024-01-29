@@ -8,13 +8,13 @@ public class Button_Script : MonoBehaviour
     private bool towerSpawned = false;
     private GameObject spawnedTower; // 生成したタワーの参照
 
+    //座標指定
+    public Button CreateObj;
+    Vector3 CPosition;
+
     //コイン処理
     GameObject CoinScript;
     Coin_Script BuyCoin;
-
-    //座標指定
-    GameObject Button_Position;
-    Button_Position ObjPosition;
 
     void Start()
     {
@@ -33,6 +33,14 @@ public class Button_Script : MonoBehaviour
         CoinScript = GameObject.Find("CoinNumSystem");
         BuyCoin = CoinScript.GetComponent<Coin_Script>();
 
+        if(CreateObj != null)
+        {
+            Button_Position CreatePosition = CreateObj.GetComponent<Button_Position>();
+            if(CreatePosition != null)
+            {
+                CPosition = CreatePosition.Position;
+            }
+        }
 
     }
 
@@ -72,7 +80,7 @@ public class Button_Script : MonoBehaviour
 
     private void Spawnflg()
     {
-        SpawnTowerAtPosition(new Vector3(83.5f, 4.0f, 92.0f));
+        SpawnTowerAtPosition(CPosition);
         deleteScript.towerToDelete = spawnedTower; // 生成したタワーの参照を Button_Delete スクリプトの towerToDelete 変数に設定
         Debug.Log("towerToDelete変数にタワー参照");
         towerSpawned = true; // スポーン済みフラグを設定
