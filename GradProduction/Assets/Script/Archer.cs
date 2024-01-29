@@ -97,19 +97,19 @@ public class Archer : MonoBehaviour
         switch (levelNumber)
         {
             case 1:
-                ATK = 15;
-                AS = 0.5;
-                Area = 5f;
+                ATK = 10;
+                AS = 0.7;
+                Area = 0.15f;
                 break;
             case 2:
-                ATK = 15;
-                AS = 0.3;
-                Area = 6f;
+                ATK = 10;
+                AS = 0.6;
+                Area = 0.2f;
                 break;
             case 3:
-                ATK = 20;
-                AS = 0.3;
-                Area = 7f;
+                ATK = 15;
+                AS = 0.5;
+                Area = 0.25f;
                 break;
         }
     }

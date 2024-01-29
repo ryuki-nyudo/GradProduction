@@ -74,21 +74,21 @@ public class Wizard : MonoBehaviour
         switch (levelNumber)
         {
             case 1:
-                attackDamage = 15;
+                attackDamage = 7;
                 attackSpeed = 0.7f;
-                attackArea = 4f;
+                attackArea = 0.15f;
                 targetCount = 3;
                 break;
             case 2:
-                attackDamage = 15;
+                attackDamage = 9;
                 attackSpeed = 0.7f;
-                attackArea = 4f;
+                attackArea = 0.15f;
                 targetCount = 4;
                 break;
             case 3:
-                attackDamage = 20;
+                attackDamage = 12;
                 attackSpeed = 0.7f;
-                attackArea = 5f;
+                attackArea = 0.18f;
                 targetCount = 5;
                 break;
         }
