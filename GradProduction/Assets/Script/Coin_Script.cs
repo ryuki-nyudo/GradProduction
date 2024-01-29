@@ -21,7 +21,7 @@ public class Coin_Script : MonoBehaviour
 
     private void Start()
     {
-        Coin = 0;
+        Coin = 100;
         CoinText.text = Coin.ToString();
         maXtime = 0.5f;
         time = 0.0f;
