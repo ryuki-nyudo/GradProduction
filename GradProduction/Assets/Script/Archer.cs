@@ -18,17 +18,24 @@ public class Archer : MonoBehaviour
 
     HPScript hpScript;  //HPScript
 
+    //Coin_Script coin_script;
+
     void Start()
     {
         sphereCollider = GetComponent<SphereCollider>();
 
+        //coin_script = GameObject.Find("CoinNumSystem").GetComponent<Coin_Script>();
+
         timeElapsed = 0;
         levelNumber = 1;
+
+
     }
 
     // Update is called once per frame
     void Update()
-    {
+    { 
+
         sphereCollider.radius = Area;
         Level();
 
@@ -52,6 +59,7 @@ public class Archer : MonoBehaviour
                 if (hpScript.HP <= 0)
                 {
                     enemyList.RemoveAt(0);
+                    //coin_script.Add();
                 }
             }
         }
@@ -71,7 +79,7 @@ public class Archer : MonoBehaviour
     void OnTriggerEnter(Collider other)  /*�����G���͈͓��ɓ�������*/
     {
 
-        if (other.gameObject.tag == "Enemy")    /*�^�O��Enemy��������*/
+        if (other.gameObject.tag == "Enemy"|| other.gameObject.tag == "Shitappa"|| other.gameObject.tag == "Shocky"|| other.gameObject.tag == "ChoD")    /*�^�O��Enemy��������*/
         {
             enemyList.Add(other.gameObject); 
         }

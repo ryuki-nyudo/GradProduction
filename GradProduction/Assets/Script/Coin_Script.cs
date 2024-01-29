@@ -15,6 +15,10 @@ public class Coin_Script : MonoBehaviour
     public Text CoinText;
     public int Coin;
 
+    public float span = 1f;
+    private float currentTime = 0f;
+
+
     private void Start()
     {
         Coin = 0;
@@ -23,8 +27,22 @@ public class Coin_Script : MonoBehaviour
         time = 0.0f;
     }
 
+    //public void Add()
+    //{
+    //    Debug.Log("COINADD");
+    //    Coin += 30;
+    //}
+
     private void Update()
     {
+        currentTime += Time.deltaTime;
+        if(currentTime > span)
+        {
+            currentTime = 0f;
+            Coin += 1;
+        }
+
+
         //–‡”‚Ì•`‰æ
         time += Time.deltaTime;
         if(time >= maXtime)

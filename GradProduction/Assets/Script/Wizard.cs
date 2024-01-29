@@ -57,7 +57,7 @@ public class Wizard : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Shitappa" || other.gameObject.tag == "Shocky" || other.gameObject.tag == "ChoD")
         {
             enemyList.Add(other.gameObject);
         }
