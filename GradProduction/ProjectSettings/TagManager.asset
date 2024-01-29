@@ -8,6 +8,8 @@ TagManager:
   - Target
   - Block
   - Tower
+  - Center
+  - Goal
   layers:
   - Default
   - TransparentFX
