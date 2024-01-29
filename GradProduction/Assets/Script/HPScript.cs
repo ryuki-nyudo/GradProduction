@@ -15,8 +15,8 @@ public class HPScript : MonoBehaviour
 
     private bool Cameraflg;
 
-    //GameObject CoinScript;
-    //Coin_Script EnemyCoin;
+    GameObject CoinScript;
+    Coin_Script EnemyCoin;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,8 +41,8 @@ public class HPScript : MonoBehaviour
         Cameraflg = false;
 
 
-        //CoinScript = GameObject.Find("CoinImage");
-        //EnemyCoin = CoinScript.GetComponent<Coin_Script>();
+        CoinScript = GameObject.Find("CoinNumSystem");
+        EnemyCoin = CoinScript.GetComponent<Coin_Script>();
 
         hpSlider.value = (float)HP;
         wkHP = HP;
@@ -70,9 +70,17 @@ public class HPScript : MonoBehaviour
 
     void Coin()
     {
-        if (gameObject.CompareTag("Enemy"))
+        if (gameObject.CompareTag("Shitappa"))
         {
-            //EnemyCoin.Coin += 10;
+            EnemyCoin.Coin += 3;
+        }
+        if (gameObject.CompareTag("Shocky"))
+        {
+            EnemyCoin.Coin += 7;
+        }
+        if (gameObject.CompareTag("ChoD"))
+        {
+            EnemyCoin.Coin += 10;
         }
     }
 }
