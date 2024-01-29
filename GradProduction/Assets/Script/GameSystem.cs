@@ -8,7 +8,7 @@ public class GameSystem : MonoBehaviour
 	//　スタートボタンを押したら実行する
 	public void StartGame()
 	{
-		SceneManager.LoadScene("SampleScene");
+		SceneManager.LoadScene("Stage1");
 	}
 	public void EndGame()
 	{
@@ -19,5 +19,9 @@ public class GameSystem : MonoBehaviour
 #else
 		Application.Quit();
 #endif
+	}
+	public void TitleScene()
+    {
+		SceneManager.LoadScene("Title");
 	}
 }

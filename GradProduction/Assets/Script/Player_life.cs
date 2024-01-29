@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class Player_life : MonoBehaviour
 {
     public Text HPText;
-    private int count = 10; // ライフの数
+    private int count = 10   ; // ライフの数
 
    private void Start()
    {
@@ -17,7 +18,7 @@ public class Player_life : MonoBehaviour
     }
     void OnCollisionEnter(Collision other)
     {
-        // ボールにぶつかったとき
+        // Enemyにぶつかったとき
         if (other.gameObject.tag == "Enemy")
         {
           --count;//ライフを1減らす
@@ -28,6 +29,10 @@ public class Player_life : MonoBehaviour
         else
         {
 
+        }
+        if(count <= 0)
+        {
+            SceneManager.LoadScene("End");
         }
     }
 }
