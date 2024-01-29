@@ -122,7 +122,7 @@ public class EnemyMove : MonoBehaviour{
         //ゴールに触れたら消す
         else if (other.gameObject.tag == "Goal")
         {
-            --HPScript.count;
+            //--HPScript.count;
             Destroy(gameObject);
         }
 
@@ -150,7 +150,7 @@ public class EnemyMove : MonoBehaviour{
     {
         if (gameObject.CompareTag("Shitappa"))
         {
-            SPD = 10.0f;
+            SPD = 5.0f;
         }
         else if (gameObject.CompareTag("Shocky"))
         {
