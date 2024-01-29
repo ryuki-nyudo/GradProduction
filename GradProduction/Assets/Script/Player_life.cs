@@ -19,7 +19,8 @@ public class Player_life : MonoBehaviour
     void OnCollisionEnter(Collision other)
     {
         // Enemy‚É‚Ô‚Â‚©‚Á‚½‚Æ‚«
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Shitappa" || other.gameObject.tag == "Shocky"
+           || other.gameObject.tag == "ChoD")
         {
           --count;//ƒ‰ƒCƒt‚ð1Œ¸‚ç‚·
             Debug.Log(count);

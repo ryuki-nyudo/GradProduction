@@ -11,12 +11,14 @@ public class EnemySpawn : MonoBehaviour
     private int EnemyMaxNum;    //出現Enemy
     private int EnemyNum;
     private int SpawnNum;
-    private int MaxSpawn = 10;
+    private int MaxSpawn = 1;
 
     Vector3 EInitPosition1; //Enemy初期座標
     Vector3 EInitPosition2; //Enemy初期座標
 
     private float time;
+    private float MaxTime = 9.0f;
+    public bool SpawnMaxflg;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +40,8 @@ public class EnemySpawn : MonoBehaviour
 
         spawn = true;
         SpawnNum = 0;
+
+        SpawnMaxflg = false;
     }
 
     // Update is called once per frame
@@ -103,12 +107,16 @@ public class EnemySpawn : MonoBehaviour
         //10回出すを9.0秒間隔でやる
         else if (SpawnNum < MaxSpawn)
         {
-            if (time >= 9.0f)
+            if (time >= MaxTime)
             {
                 spawn = true;
                 time = 0.0f;
                 EnemyNum = 0;
             }
+        }
+        else
+        {
+            SpawnMaxflg = true;
         }
     }
 }

@@ -12,6 +12,10 @@ public class Button_Script : MonoBehaviour
     GameObject CoinScript;
     Coin_Script BuyCoin;
 
+    //ç¿ïWéwíË
+    GameObject Button_Position;
+    Button_Position ObjPosition;
+
     void Start()
     {
         if (gameObject.CompareTag("Archer"))
@@ -28,6 +32,8 @@ public class Button_Script : MonoBehaviour
 
         CoinScript = GameObject.Find("CoinNumSystem");
         BuyCoin = CoinScript.GetComponent<Coin_Script>();
+
+
     }
 
     private void Update()

@@ -13,7 +13,7 @@ public class EnemyMove : MonoBehaviour{
     private int change = 0;
 
     //移動速度
-    private float SPD = 5.0f;
+    private float SPD;
 
     //防衛キャラ接敵
     public bool WallArea;
@@ -30,6 +30,7 @@ public class EnemyMove : MonoBehaviour{
 
     void Start(){
         change = 0;
+        SPD = 0.0f;
 
         //Player接触処理
         WallArea = false;
@@ -41,6 +42,7 @@ public class EnemyMove : MonoBehaviour{
     }
 
     void Update() {
+        MoveSpeed();
         //進行
         if (WallArea == false)
         {
@@ -135,5 +137,21 @@ public class EnemyMove : MonoBehaviour{
         //        hpScript = other.gameObject.GetComponent<HPScript>();
         //    }
         //}
+    }
+
+    private void MoveSpeed()
+    {
+        if (gameObject.CompareTag("Shitappa"))
+        {
+            SPD = 5.0f;
+        }
+        else if (gameObject.CompareTag("Shocky"))
+        {
+            SPD = 4.0f;
+        }
+        else if (gameObject.CompareTag("ChoD"))
+        {
+            SPD = 3.0f;
+        }
     }
 }
