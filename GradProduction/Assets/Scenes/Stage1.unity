@@ -2494,6 +2494,7 @@ GameObject:
   - component: {fileID: 1622486247}
   - component: {fileID: 1622486246}
   - component: {fileID: 1622486245}
+  - component: {fileID: 1622486248}
   m_Layer: 5
   m_Name: Yumi_delete
   m_TagString: Untagged
@@ -2604,6 +2605,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1622486243}
   m_CullTransparentMesh: 1
+--- !u!114 &1622486248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622486243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bcb7b4433805b3438f53f0df13393d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerToDelete: {fileID: 9210655119100142598, guid: aa8dbc0ccd7608341a98723629d266b2, type: 3}
 --- !u!1 &1718815123
 GameObject:
   m_ObjectHideFlags: 0
@@ -2864,6 +2878,7 @@ GameObject:
   - component: {fileID: 2097024721}
   - component: {fileID: 2097024720}
   - component: {fileID: 2097024719}
+  - component: {fileID: 2097024722}
   m_Layer: 5
   m_Name: Yumi_Button
   m_TagString: Untagged
@@ -2998,6 +3013,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2097024717}
   m_CullTransparentMesh: 1
+--- !u!114 &2097024722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097024717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc1fa1131601c5f4a9b4a08147110b82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerPrefab: {fileID: 9210655119100142598, guid: aa8dbc0ccd7608341a98723629d266b2, type: 3}
+  deleteScript: {fileID: 1622486248}
 --- !u!1001 &4133985880601452149
 PrefabInstance:
   m_ObjectHideFlags: 0
