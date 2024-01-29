@@ -4,61 +4,110 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
-    private bool spawn;                 // 敵を生成するかどうかのフラグ
-    GameObject Enemy;                   // 敵オブジェクトの情報
-    private int EnemyMaxNum;            // 出現する敵の最大数
-    private int EnemyNum;               // 現在の敵の数
-    private int SpawnNum;               // 敵の生成回数
-    private int MaxSpawn = 10;          // 最大生成回数
-    Vector3 EInitPosition;              // 敵の初期座標
+    private bool spawn;
+    GameObject Shitappa;
+    GameObject Shocky;
+    GameObject ChoD;
+    private int EnemyMaxNum;    //出現Enemy
+    private int EnemyNum;
+    private int SpawnNum;
+    private int MaxSpawn = 10;
 
-    private float time;                 // 経過時間
+    Vector3 EInitPosition1; //Enemy初期座標
+    Vector3 EInitPosition2; //Enemy初期座標
+
+    private float time;
 
     // Start is called before the first frame update
     void Start()
     {
-        Enemy = (GameObject)Resources.Load("GruntPBR");  // 敵のプレハブをリソースからロード
+        //Object情報
+        Shitappa = (GameObject)Resources.Load("SlimePBR");
+        Shocky = (GameObject)Resources.Load("GruntPBR");
+        ChoD = (GameObject)Resources.Load("HP_Golem");
+
         EnemyNum = 0;
-        EnemyMaxNum = 10;
+        EnemyMaxNum = 3;
 
-        EInitPosition = GameObject.Find("EnemySpawn").transform.position;  // 敵の初期位置を設定
+        EInitPosition1 = GameObject.Find("EnemySpawn1").transform.position;
+        EInitPosition2 = GameObject.Find("EnemySpawn2").transform.position;
 
-        time = 0.0f;  // 経過時間の初期化
 
-        spawn = true;  // 敵の生成を開始する
+        //時間処理
+        time = 0.0f;
+
+        spawn = true;
         SpawnNum = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;  // 経過時間の更新
+        //タイマー開始
+        time += Time.deltaTime;
 
         if (spawn == true)
         {
-            // 敵の生成条件を満たした場合に敵を生成
+            //3体出すを2秒経ったら実行
             for (; EnemyNum < EnemyMaxNum && time >= 2.0f;)
             {
-                Instantiate(Enemy, EInitPosition, Quaternion.identity);  // 敵を生成
-                EnemyNum++;
-
-                if (EnemyNum == EnemyMaxNum)
+                //Spawn1
+                switch (SpawnNum)
                 {
-                    spawn = false;  // 敵の生成を停止
-                    SpawnNum++;
+                    case 0:
+                    case 1:
+                    case 4:
+                    case 7:
+                        Instantiate(Shitappa, EInitPosition1, Quaternion.identity);
+                        break;
+                    case 3:
+                    case 6:
+                        Instantiate(Shocky, EInitPosition1, Quaternion.identity);
+                        break;
+                    case 5:
+                    case 8:
+                    case 9:
+                        Instantiate(ChoD, EInitPosition1, Quaternion.identity);
+                        break;
                 }
 
-                time = 0.0f;  // 経過時間をリセット
+                //Spawn2
+                switch (SpawnNum)
+                {
+                    case 1:
+                    case 3:
+                        Instantiate(Shitappa, EInitPosition2, Quaternion.identity);
+                        break;
+                    case 2:
+                    case 4:
+                    case 6:
+                    case 8:
+                        Instantiate(Shocky, EInitPosition2, Quaternion.identity);
+                        break;
+                    case 7:
+                    case 9:
+                        Instantiate(ChoD, EInitPosition2, Quaternion.identity);
+                        break;
+
+                }
+                EnemyNum++;
+                if (EnemyNum == EnemyMaxNum)
+                {
+                    spawn = false;
+                    SpawnNum++;
+                }
+                //タイマーリセット
+                time = 0.0f;
             }
         }
+        //10回出すを9.0秒間隔でやる
         else if (SpawnNum < MaxSpawn)
         {
-            // 一定時間経過したら敵の生成を再開
             if (time >= 9.0f)
             {
-                spawn = true;  // 敵の生成を再開
+                spawn = true;
                 time = 0.0f;
-                EnemyNum = 0;  // 現在の敵の数をリセット
+                EnemyNum = 0;
             }
         }
     }
