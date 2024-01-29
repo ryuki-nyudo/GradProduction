@@ -5,13 +5,12 @@ using UnityEngine;
 using UnityEngine.AI;
 public class EnemyMove : MonoBehaviour{
     //移動ターゲット
-    [SerializeField]
-    private Transform m_Target;
-    [SerializeField]
-    private Transform m_Goal;
+    public Transform m_CenterTarget;
+    public Transform m_Target;
+    public Transform m_Goal;
 
     //ターゲットからゴールに移動変更
-    private bool change = false;
+    private int change = 0;
 
     //移動速度
     private float SPD = 5.0f;
@@ -30,7 +29,7 @@ public class EnemyMove : MonoBehaviour{
     private float ATKtime;
 
     void Start(){
-        change = false;
+        change = 0;
 
         //Player接触処理
         WallArea = false;
@@ -43,26 +42,37 @@ public class EnemyMove : MonoBehaviour{
 
     void Update() {
         //進行
-        if (WallArea == false) {
-            //target移動
-            if (change == false) {
-                transform.position = Vector3.MoveTowards(
-                    transform.position,
-                    m_Target.transform.position,
-                    SPD * Time.deltaTime
-                    );
-
-                transform.LookAt(m_Target.transform);
-            }
-            //goal移動
-            else {
-                transform.position = Vector3.MoveTowards(
-                    transform.position,
-                    m_Goal.transform.position,
-                    SPD * Time.deltaTime
-                    );
-
-                transform.LookAt(m_Goal.transform);
+        if (WallArea == false)
+        {
+            switch (change)
+            {
+                case 0: //真ん中に移動させる
+                    transform.position = Vector3.MoveTowards(
+                transform.position,
+                m_CenterTarget.transform.position,
+                SPD * Time.deltaTime
+                );
+                    //進行方向に向きを変える    
+                    transform.LookAt(m_CenterTarget.transform);
+                    break;
+                case 1: //進行させる
+                    transform.position = Vector3.MoveTowards(
+                transform.position,
+                m_Target.transform.position,
+                SPD * Time.deltaTime
+                );
+                    //進行方向に向きを変える    
+                    transform.LookAt(m_Target.transform);
+                    break;
+                case 2: //ゴールに向かせる
+                    transform.position = Vector3.MoveTowards(
+                transform.position,
+                m_Goal.transform.position,
+                SPD * Time.deltaTime
+                );
+                    //進行方向に向きを変える    
+                    transform.LookAt(m_Goal.transform);
+                    break;
             }
         }
 
@@ -93,11 +103,17 @@ public class EnemyMove : MonoBehaviour{
 
     void OnTriggerEnter(Collider other){
         //進行ターゲットに触れたらゴールに移動する
-        if (other.gameObject.tag == "Target"){
-            change = true;
+        if (other.gameObject.tag == "Center")
+        {
+            change = 1;
+        }
+        else if (other.gameObject.tag == "Target")
+        {
+            change = 2;
         }
         //ゴールに触れたら消す
-        else if (other.gameObject.tag == "Goal"){
+        else if (other.gameObject.tag == "Goal")
+        {
             Destroy(gameObject);
         }
 
