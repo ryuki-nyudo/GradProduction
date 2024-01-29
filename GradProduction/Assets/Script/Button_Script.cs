@@ -10,7 +10,7 @@ public class Button_Script : MonoBehaviour
 
     void Start()
     {
-        towerPrefab = (GameObject)Resources.Load("TowerTest");
+        towerPrefab = (GameObject)Resources.Load("Lv1");
         // ボタンにクリック時の処理を追加
         Button btn = GetComponent<Button>();
         btn.onClick.AddListener(OnButtonClick);
@@ -26,7 +26,7 @@ public class Button_Script : MonoBehaviour
     {
         if (!towerSpawned)
         {
-            SpawnTowerAtPosition(new Vector3(-8.25f, 4f, 61.3f));
+            SpawnTowerAtPosition(new Vector3(83.5f, 4.0f, 92.0f));
             deleteScript.towerToDelete = spawnedTower; // 生成したタワーの参照を Button_Delete スクリプトの towerToDelete 変数に設定
             Debug.Log("towerToDelete変数にタワー参照");
             towerSpawned = true; // スポーン済みフラグを設定
