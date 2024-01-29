@@ -4,56 +4,61 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
-    private bool spawn;
-    GameObject Enemy;    //Enemyオブジェクト情報
-    private int EnemyMaxNum;    //出現Enemy
-    private int EnemyNum;
-    private int SpawnNum;
-    private int MaxSpawn = 10;
-    Vector3 EInitPosition; //Enemy初期座標
+    private bool spawn;                 // 敵を生成するかどうかのフラグ
+    GameObject Enemy;                   // 敵オブジェクトの情報
+    private int EnemyMaxNum;            // 出現する敵の最大数
+    private int EnemyNum;               // 現在の敵の数
+    private int SpawnNum;               // 敵の生成回数
+    private int MaxSpawn = 10;          // 最大生成回数
+    Vector3 EInitPosition;              // 敵の初期座標
 
-    private float time;
+    private float time;                 // 経過時間
 
     // Start is called before the first frame update
     void Start()
     {
-        Enemy = (GameObject)Resources.Load ("GruntPBR");
+        Enemy = (GameObject)Resources.Load("GruntPBR");  // 敵のプレハブをリソースからロード
         EnemyNum = 0;
-        EnemyMaxNum = 10;  
+        EnemyMaxNum = 10;
 
-        EInitPosition = GameObject.Find("EnemySpawn").transform.position;
+        EInitPosition = GameObject.Find("EnemySpawn").transform.position;  // 敵の初期位置を設定
 
-        //時間処理
-        time = 0.0f;
+        time = 0.0f;  // 経過時間の初期化
 
-        spawn = true;
+        spawn = true;  // 敵の生成を開始する
         SpawnNum = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //タイマー開始
-        time += Time.deltaTime;
+        time += Time.deltaTime;  // 経過時間の更新
 
-        if(spawn == true){
-            //3体出すを2秒経ったら実行
-            for(; EnemyNum < EnemyMaxNum && time >= 2.0f; ){
-                Instantiate (Enemy, EInitPosition, Quaternion.identity);
+        if (spawn == true)
+        {
+            // 敵の生成条件を満たした場合に敵を生成
+            for (; EnemyNum < EnemyMaxNum && time >= 2.0f;)
+            {
+                Instantiate(Enemy, EInitPosition, Quaternion.identity);  // 敵を生成
                 EnemyNum++;
-                if(EnemyNum == EnemyMaxNum){
-                    spawn = false;
+
+                if (EnemyNum == EnemyMaxNum)
+                {
+                    spawn = false;  // 敵の生成を停止
                     SpawnNum++;
                 }
-                //タイマーリセット
-                time = 0.0f;
+
+                time = 0.0f;  // 経過時間をリセット
             }
         }
-        else if(SpawnNum < MaxSpawn) {
-            if(time >= 9.0f){
-                spawn = true;
+        else if (SpawnNum < MaxSpawn)
+        {
+            // 一定時間経過したら敵の生成を再開
+            if (time >= 9.0f)
+            {
+                spawn = true;  // 敵の生成を再開
                 time = 0.0f;
-                EnemyNum = 0;
+                EnemyNum = 0;  // 現在の敵の数をリセット
             }
         }
     }
